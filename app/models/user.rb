@@ -9,8 +9,8 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
-  validates :basic_time, presence: true
-  validates :work_time, presence: true
+  
+ 
   has_secure_password
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)(?=.*?[!-\/:-@\[-`{-~])[!-~]{8,20}+\z/i
   validates :password, presence: true, allow_nil: true,
@@ -53,5 +53,24 @@ class User < ApplicationRecord
     else
       return false
     end
+  end
+  
+  def self.import(file)
+    if file.present?
+      CSV.foreach(file.path, headers: true) do |row|
+        # IDが見つかれば、レコードを呼び出し、見つかれなければ、新しく作成
+        user = find_by(id: row["id"]) || new
+        # CSVからデータを取得し、設定する
+        user.attributes = row.to_hash.slice(*updatable_attributes)
+        # 保存する
+        user.save
+      end
+    else
+      return false
+    end
+  end
+  
+  def self.updatable_attributes
+    ["name", "email", "affiliation", "employee_number", "uid", "password"]
   end
 end

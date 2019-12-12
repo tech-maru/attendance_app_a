@@ -24,9 +24,48 @@
 
 /* index */
 
-.pagination {
-  margin-top: 0!important;
+.input-group {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  label, span {
+    margin-left: 0!important;
+  }
+  .form-control {
+    background-color: white;
+  }
 }
+
+.submit-table {
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+
+.submit-btn {
+  width: 100%!important;
+  }
+
+.custom-field {
+  display: none!important;
+}
+
+.index-area {
+  span{
+  margin: auto 8px auto auto;
+  }
+}
+
+
+.btn-space {
+  padding : 15px;
+  background-color: #EEE;
+  margin-bottom : 15px;
+}
+
+.edit-area {
+  border : solid 1px #EEE;
+  padding : 10px;
+}
+
 
 .search-container {
   float: right;

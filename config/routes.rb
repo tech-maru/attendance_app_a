@@ -4,10 +4,9 @@ Rails.application.routes.draw do
   
   get '/signup', to: 'users#new'
   get '/index_result', to: 'users#index_result'
+  get 'going_to_work_index'
   get '/basic_info', to: 'users#basic_info'
   patch '/basic_info_update', to: 'users#basic_info_update'
-  
-  
   
   get '/login', to: 'sessions#new'
   get '/test_login', to: 'sessions#general_user'
@@ -16,6 +15,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   
   resources :users do
+    collection { post :import}
     member do
       get 'one_week', to: 'users#show_one_week'
       get 'edit_basic_info'

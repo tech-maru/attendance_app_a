@@ -7,13 +7,13 @@
         <span>【<%= l(@first_day, format: :middle) %>】時間管理表</span>
         <button class="btn btn-info"><%= link_to "→", user_path(date: @first_day.next_month) %></button>
       </td>
-      <td colspan="2">指定勤務時間<span><%= format_basic_info(@user.basic_time) %></span></td>
-      <td colspan="2">基本時間<span><%= format_basic_info(@user.work_time) %></span></td>
+      <td colspan="2">指定勤務時間<span><%=  %></span></td>
+      <td colspan="2">基本時間<span><%=  %></span></td>
       <td>初日<span><%= l(@first_day, format: :short) %></span></td>
     </tr>
 
     <tr>
-      <td>所属:<%= @user.department.present? ? @user.department : "未所属" %></td>
+      <td>所属:<%= @user.affiliation.present? ? @user.affiliation : "未所属" %></td>
       <td>名前：<%= @user.name %></td>
       <td>コード</td><td></td>
       <td>出勤日数<span><%= worked_on_sum %>日</span></td>

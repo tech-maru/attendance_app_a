@@ -20,6 +20,14 @@ class UsersController < ApplicationController
     end
   end
   
+  def import
+    User.import(params[:file])
+    redirect_to users_url
+  end
+  
+  def going_to_work_index
+  end
+  
   def show
   end
   
@@ -87,10 +95,10 @@ class UsersController < ApplicationController
   private
     
     def user_params
-      params.require(:user).permit(:name, :email, :department, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :affiliation, :employee_number, :uid, :basic_work_time, :basic_actual_time, :password, :password_confirmation)
     end
     
     def basic_info_params
-      params.require(:user).permit(:department, :basic_time, :work_time)
+      params.require(:user).permit(:affiliation, :basic_work_time, :basic_actual_time)
     end
 end
