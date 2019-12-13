@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:show, :show_one_week, :edit, :update]
   before_action :correct_user, only:[:show, :edit]
   before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info, :basic_info, :basic_info_update]
+  before_action :today_working, only: :going_to_work
   before_action :set_one_month, only: :show
   before_action :set_one_week, only: :show_one_week
   
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
-  def going_to_work_index
+  def going_to_work
   end
   
   def show

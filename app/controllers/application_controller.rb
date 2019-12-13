@@ -29,6 +29,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def today_working
+    @attendances = Attendance.where(worked_on: Date.current, finished_at: nil)
+    @today_working_attendances = @attendances.where.not(started_at: nil)
+    @user_id = @today_working_attendances.pluck(:user_id)
+    @users = User.where(id: @user_id)
+  end
+  
   def set_one_month
     @first_day = params[:date].nil? ?
     Date.current.beginning_of_month : params[:date].to_date

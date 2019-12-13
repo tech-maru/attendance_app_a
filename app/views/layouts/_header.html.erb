@@ -7,6 +7,7 @@
           <li><%= link_to "トップへ", current_user %></li>
           <% if current_user.admin? %>
             <li><%= link_to "ユーザー一覧", users_path %></li>
+            <li><%= link_to "出勤社員一覧", going_to_work_path %></li>
             <li><%= link_to "基本勤怠情報の更新", basic_info_path %></li>
           <% end %>
           <li class="dropdown">

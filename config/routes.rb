@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   get '/signup', to: 'users#new'
   get '/index_result', to: 'users#index_result'
-  get 'going_to_work_index'
+  get 'going_to_work', to: 'users#going_to_work'
   get '/basic_info', to: 'users#basic_info'
   patch '/basic_info_update', to: 'users#basic_info_update'
   
