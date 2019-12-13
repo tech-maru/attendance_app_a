@@ -59,18 +59,21 @@
                 
                 <%= f.label :uid, class: "label-form" %>
                 <%= f.text_field :uid, class: "form-control", value: user.uid %>
+                  
+                <%= f.label :password（半角英数字記号をそれぞれ1種類以上含めてください）, class: "label-form" %>
+                <%= f.password_field :password, class: "form-control", value: user.password_digest %>
+                
+                <%= f.label :password_confirmation, class: "label-form" %>
+                <%= f.password_field :password_confirmation, class: "form-control", value: user.password_digest %>
                 
                 <%= f.label :基本勤務時間, class: "label-form" %>
                 <%= f.time_field :basic_work_time, class: "form-control", value: user.basic_work_time %>
                 
-                <%= f.label :指定勤務時間, class: "label-form" %>
-                <%= f.time_field :basic_actual_time, class: "form-control", value: user.basic_actual_time %>
-                  
-                <%= f.label :password（半角英数字記号をそれぞれ1種類以上含めてください）, class: "label-form" %>
-                <%= f.password_field :password, class: "form-control", value: user.password_digest %>
-                  
-                <%= f.label :password_confirmation, class: "label-form" %>
-                <%= f.password_field :password_confirmation, class: "form-control", value: user.password_digest %>
+                <%= f.label :指定勤務開始時間, class: "label-form" %>
+                <%= f.time_field :designated_work_start_time, class: "form-control", value: user.designated_work_start_time %>
+                
+                <%= f.label :指定勤務終了時間, class: "label-form" %>
+                <%= f.time_field :designated_work_end_time, class: "form-control", value: user.designated_work_end_time %>
                   
                 <%= f.submit "編集", class: "btn btn-primary btn-block btn-signup" %>
                   

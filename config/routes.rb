@@ -24,7 +24,11 @@ Rails.application.routes.draw do
       get 'attendances/edit_one_week'
       patch 'attendances/all_update'
     end
-    resources :attendances, only: :update
+    resources :attendances do
+      patch 'update'
+      get 'overtime'
+      get 'overtimenotifications/new'
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

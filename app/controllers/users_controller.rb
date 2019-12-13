@@ -30,6 +30,8 @@ class UsersController < ApplicationController
   end
   
   def show
+    @users = User.all
+    @attendance = Attendance.find(params[:id])
   end
   
   def show_one_week

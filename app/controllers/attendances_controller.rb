@@ -1,12 +1,19 @@
 class AttendancesController < ApplicationController
   before_action :set_user, only: [:edit_one_month, :edit_one_week, :all_update]
-  before_action :logged_in_user, only: [:update, :edit_one_month, :edit_one_week]
+  before_action :logged_in_user, only: [:update, :overtime, :edit_one_month, :edit_one_week]
   before_action :admin_or_correct_user, only: [:update, :edit_one_month, :edit_one_week, :all_update]
   before_action :set_one_month, only: :edit_one_month
   before_action :set_one_week, only: :edit_one_week
   UPDATE_ERROR_MSG = "登録できませんでした。再登録してください。"
   
   def edit
+  end
+  
+  def overtime
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:attendance_id])
+    @attendance.create_notification_overtime(@user)
+    redirect_to user_url(@user)
   end
   
   def update

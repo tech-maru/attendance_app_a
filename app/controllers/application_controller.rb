@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def superior_user
+    @superior_users = User.where(superior: true)
+    @lists = @superior_users.pluck(:name)
+  end
+  
   def today_working
     @attendances = Attendance.where(worked_on: Date.current, finished_at: nil)
     @today_working_attendances = @attendances.where.not(started_at: nil)

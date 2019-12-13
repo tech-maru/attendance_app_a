@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :attendances, dependent: :destroy
+  has_many :active_overtimenotifications, class_name: 'Overtimenotifications', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :active_overtimenotifications, class_name: '0vertimenotifications', foreign_key: 'visitor_id', dependent: :destroy
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   

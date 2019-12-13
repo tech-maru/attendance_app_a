@@ -1,5 +1,6 @@
 class Attendance < ApplicationRecord
   belongs_to :user
+  has_many :overtimenotifications, dependent: :destroy
   
   validates :worked_on, presence: true
   validates :note, length: { maximum: 50 }
@@ -20,6 +21,18 @@ class Attendance < ApplicationRecord
   def update_invalid_if_before_date_todey
     if Date.current > worked_on
       errors.add(:finished_at, "退社時間を入力してください") if started_at.present? && finished_at.blank?
+    end
+  end
+  
+  def create_notification_overtime(logged_in_user)
+    temp = Overtimenotification.where(["visitor_id = ? and visited_id = ? and attendance_id = ? ", logged_in_user.id, user_id, id])
+    if temp.blank?
+      overtimenotification = logged_in_user.active_notifications.new(
+        attendance_id: id,
+        visited_id: user_id,
+        action: "overtime",
+        )
+      overtimenotification.save if notification.valid?
     end
   end
 end
